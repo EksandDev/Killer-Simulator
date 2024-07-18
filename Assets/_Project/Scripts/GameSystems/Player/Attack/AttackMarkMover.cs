@@ -3,18 +3,9 @@ using Zenject;
 
 public class AttackMarkMover : MonoBehaviour
 {
+    [SerializeField] private AttackZone _attackZone;
     [SerializeField] private Camera _userInterfaceCamera;
     [SerializeField] private Canvas _markCanvas;
-
-    private AttackZone _attackZone;
-
-    #region Zenject init
-    [Inject]
-    private void Init(AttackZone attackZone)
-    {
-        _attackZone = attackZone;
-    }
-    #endregion
 
     private void Update()
     {

@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerRotator : MonoBehaviour
 {
+    [SerializeField] private PlayerMover _mover;
     [SerializeField] private float _speed;
 
     private bool _isActive = true;
 
     public bool IsActive { get => _isActive; set => _isActive = value; }
 
-    public IEnumerator Follow(Vector3 position)
+    public IEnumerator Follow(Transform target)
     {
         while (!_isActive)
         {
-            RotateTo(position);
+            RotateTo(target.position);
 
             yield return null;
         }
@@ -22,21 +23,17 @@ public class PlayerRotator : MonoBehaviour
 
     private void Update()
     {
-        if (_isActive)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit hit;
+        if (!_isActive)
+            return;
 
-            if (Physics.Raycast(ray, out hit)) 
-                RotateTo(hit.point);
-        }
+        if (_mover.Direction != Vector3.zero)
+            RotateTo(transform.position + _mover.Direction);
     }
 
     private void RotateTo(Vector3 position)
     {
-        Vector3 direction = (position - transform.position).normalized;
+        Vector3 direction = position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp
-            (transform.rotation, lookRotation, _speed * Time.deltaTime);
+        transform.DORotateQuaternion(lookRotation, 0.5f).SetLink(gameObject);
     }
 }

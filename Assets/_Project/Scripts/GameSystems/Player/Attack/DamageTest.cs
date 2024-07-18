@@ -20,5 +20,6 @@ public class DamageTest : MonoBehaviour, IDamageable
 
     public int MaxHealth => _maxHealth;
     public bool IsActive => gameObject.activeInHierarchy;
+    public Transform CurrentTransform => transform;
     public Vector3 CurrentPosition => transform.position;
 }

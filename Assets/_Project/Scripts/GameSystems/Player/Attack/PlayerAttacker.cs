@@ -6,15 +6,15 @@ using Zenject;
 
 public class PlayerAttacker : MonoBehaviour
 {
+    [SerializeField] private PlayerMover _mover;
+    [SerializeField] private PlayerRotator _rotator;
+    [SerializeField] private AttackZone _attackZone;
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _attackPoint;
     [SerializeField] private Transform _lineCastStartPoint;
     [SerializeField] private float _attackSphereRadius;
 
     private PlayerInput _input;
-    private PlayerMover _mover;
-    private PlayerRotator _rotator;
-    private AttackZone _attackZone;
     private int _damage = 5;
     private bool _isAttacking;
 
@@ -30,15 +30,6 @@ public class PlayerAttacker : MonoBehaviour
             _animator.SetBool(IS_ATTACKING, _isAttacking);
         }
     }
-
-    #region Zenject init
-    [Inject] private void Init(PlayerMover mover, PlayerRotator rotator, AttackZone attackZone)
-    {
-        _mover = mover;
-        _rotator = rotator;
-        _attackZone = attackZone;
-    }
-    #endregion
 
     private void Start()
     {
@@ -60,7 +51,7 @@ public class PlayerAttacker : MonoBehaviour
         var nearestTarget = _attackZone.NearestTarget;
 
         if (nearestTarget != null)
-            StartCoroutine(_rotator.Follow(nearestTarget.CurrentPosition));
+            StartCoroutine(_rotator.Follow(nearestTarget.CurrentTransform));
 
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorClipInfo(0).Length / 1.6f);
 

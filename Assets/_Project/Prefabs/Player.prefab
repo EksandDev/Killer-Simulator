@@ -1159,7 +1159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 326603975224682289}
-  - component: {fileID: 5871037593527427732}
+  - component: {fileID: 8384382344637943617}
   - component: {fileID: 1675454341143122926}
   - component: {fileID: 2895785877208161402}
   - component: {fileID: 4037309494966838485}
@@ -1190,9 +1190,10 @@ Transform:
   - {fileID: 2258167480249036559}
   - {fileID: 5588533933702360104}
   - {fileID: 8042648029760689346}
+  - {fileID: 3840299461167322590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5871037593527427732
+--- !u!65 &8384382344637943617
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1211,8 +1212,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.278795, z: 0.595965}
-  m_Center: {x: 0, y: 1.1321284, z: 0.0053753853}
+  m_Size: {x: 0.5438132, y: 2.2320237, z: 0.37221837}
+  m_Center: {x: 0.0017251968, y: 1.1395669, z: -0.004240632}
 --- !u!54 &1675454341143122926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1296,6 +1297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb00d13ada72124aa950e2bd1781aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mover: {fileID: 4037309494966838485}
+  _rotator: {fileID: 8198762293452669409}
+  _attackZone: {fileID: 6240961027968864616}
   _animator: {fileID: 7966972935776445535}
   _attackPoint: {fileID: 5588533933702360104}
   _lineCastStartPoint: {fileID: 8042648029760689346}
@@ -1312,6 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a243126d81da4945983414dbe0f5c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mover: {fileID: 4037309494966838485}
   _speed: 15
 --- !u!114 &3205213229200826548
 MonoBehaviour:
@@ -1325,7 +1330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28784bf63486873478270c1a8eacc427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mark: {fileID: 0}
+  _attackZone: {fileID: 6240961027968864616}
+  _userInterfaceCamera: {fileID: 0}
+  _markCanvas: {fileID: 0}
 --- !u!1 &7359427332680461031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1494,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8430698732193748074}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8484653529710750865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3840299461167322590}
+  - component: {fileID: 6299833888638678803}
+  - component: {fileID: 6486167511304220167}
+  m_Layer: 6
+  m_Name: FearZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3840299461167322590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484653529710750865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.235, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 326603975224682289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6299833888638678803
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484653529710750865}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6486167511304220167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484653529710750865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5516f7225aa7101439f389124f39f72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMover: {fileID: 4037309494966838485}
+  _timeToDisableChase: 5
 --- !u!1 &8488412452506327866
 GameObject:
   m_ObjectHideFlags: 0

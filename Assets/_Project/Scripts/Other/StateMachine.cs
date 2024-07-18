@@ -25,6 +25,4 @@ public class StateMachine
     public void AddState(State state) => _states.Add(state.GetType(), state);
 
     public void Update() => CurrentState?.Update();
-
-    public void PhysicsUpdate() => CurrentState?.PhysicsUpdate();
 }
